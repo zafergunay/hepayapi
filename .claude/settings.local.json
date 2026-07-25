@@ -45,7 +45,27 @@
       "mcp__playwright__browser_resize",
       "mcp__playwright__browser_navigate",
       "mcp__playwright__browser_evaluate",
-      "mcp__playwright__browser_console_messages"
+      "mcp__playwright__browser_console_messages",
+      "Bash(git commit *)",
+      "Bash(curl -s -o /dev/null -w \"status=%{http_code}\\\\n\" \"https://hepayapi-w1r6-git-main-cypforum-8477s-projects.vercel.app/\")",
+      "Bash(curl -s -o /dev/null -w \"status=%{http_code} size=%{size_download}\\\\n\" \"https://hepayapi-w1r6-git-main-cypforum-8477s-projects.vercel.app/videos/hero-scrub.mp4\")",
+      "Bash(curl -s -I \"https://hepayapi-w1r6-git-main-cypforum-8477s-projects.vercel.app/\")",
+      "Bash(gh api *)",
+      "PowerShell($gh = Get-Command gh -ErrorAction SilentlyContinue; if \\($gh\\) { \"gh: $\\($gh.Source\\)\" } else { \"gh: not found\" }; $v = Get-Command vercel -ErrorAction SilentlyContinue; if \\($v\\) { \"vercel: $\\($v.Source\\)\" } else { \"vercel: not found\" })",
+      "Bash(git fetch *)",
+      "Bash(git ls-tree *)",
+      "Bash(curl -s --max-time 30 \"https://hepayapi-w1r6.vercel.app/\")",
+      "Bash(curl -s -o /dev/null -w \"status=%{http_code} bytes=%{size_download}\\\\n\" --max-time 90 \"https://hepayapi-w1r6.vercel.app/videos/hero-scrub.mp4\")",
+      "Bash(curl -s --max-time 30 \"https://hepayapi-w1r6.vercel.app/robots.txt\")",
+      "Bash(curl -s --max-time 30 \"https://hepayapi-w1r6.vercel.app/sitemap.xml\")",
+      "Bash(find \"C:/Users/Zafer/OneDrive\" \"C:/Users/Zafer/AppData/Roaming/Claude\" \"C:/Users/Zafer/AppData/Local/AnthropicClaude\" -type f \\\\\\( -iname \"*.png\" -o -iname \"*.jpg\" -o -iname \"*.jpeg\" -o -iname \"*.webp\" -o -iname \"*.svg\" \\\\\\) -newermt \"-4 days\" 2>/dev/null | grep -iv \"node_modules\\\\|/.next/\\\\|scratchpad\" | head -30)",
+      "Bash(python \"C:/Users/Zafer/AppData/Local/Temp/claude/C--Users-Zafer-OneDrive-Masa-st--Python-ahmethepa/cca7c4b4-d3b5-4ca9-80fb-647f9a7134d1/scratchpad/make_logo.py\")",
+      "Bash(rm -f public/brand/*.png)",
+      "Bash(rm -rf src/app/zz-admin-preview)",
+      "Bash(rm -f admin-dash.jpeg admin-mobile.jpeg admin-login.jpeg logo-header.jpeg logo-footer.jpeg)",
+      "Bash(mkdir -p scripts)",
+      "Bash(cp \"C:/Users/Zafer/AppData/Local/Temp/claude/C--Users-Zafer-OneDrive-Masa-st--Python-ahmethepa/cca7c4b4-d3b5-4ca9-80fb-647f9a7134d1/scratchpad/make_logo.py\" scripts/build-brand-assets.py)",
+      "Bash(python scripts/build-brand-assets.py)"
     ]
   }
 }

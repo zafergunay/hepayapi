@@ -4,6 +4,7 @@ import { useSyncExternalStore } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Container } from "./container";
+import { BrandLogo } from "./brand-logo";
 import { DesktopNav, MobileNav } from "./mobile-nav";
 import {
   getHeroCovering,
@@ -65,22 +66,14 @@ export function SiteHeader() {
       }`}
     >
       <Container className="flex h-[65px] items-center justify-between">
-        <Link href="/" className="flex items-baseline gap-2.5">
-          <span
-            className={`font-display text-lg font-bold tracking-tight transition-colors duration-300 ${
-              overFilm ? "text-white" : "text-ink"
-            }`}
-          >
-            HE
-            <span className={overFilm ? "text-accent-bright" : "text-accent"}>PA</span>
-          </span>
-          <span
-            className={`hidden font-mono text-[10px] uppercase tracking-[0.18em] transition-colors duration-300 sm:inline ${
-              overFilm ? "text-white/50" : "text-muted"
-            }`}
-          >
-            İnşaat &amp; Güçlendirme
-          </span>
+        <Link href="/" aria-label="Hepa Yapı — Anasayfa" className="flex items-center">
+          <BrandLogo
+            onDark={overFilm}
+            crossfade
+            priority
+            sizes="140px"
+            className="h-9 sm:h-10"
+          />
         </Link>
 
         <DesktopNav dark={overFilm} />

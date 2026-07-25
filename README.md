@@ -20,6 +20,23 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Brand assets
+
+`logo.jpeg` at the repo root is the master artwork. Everything the site uses is
+derived from it — regenerate after any change to the logo:
+
+```bash
+python scripts/build-brand-assets.py
+```
+
+That writes `public/brand/` (transparent lockups, plus white-on-dark recolours
+for the hero header and the admin login panel) and the app icons under
+`src/app/`. Requires Pillow (`pip install pillow`).
+
+The dark variants exist because the header sits on the dark hero film at the top
+of the home page and on the light canvas once scrolled; `BrandLogo` cross-fades
+between the two rather than swapping `src`, so the swap never flashes.
+
 ## Hero film assets
 
 `public/videos/` holds three derivatives of one source clip. The source `.mp4`

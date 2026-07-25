@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Container } from "./container";
+import { BrandLogo } from "./brand-logo";
 import { IconPin } from "./icons";
 
 const REGIONS = ["Kahramanmaraş", "Hatay", "Adıyaman"];
@@ -11,10 +12,10 @@ export function SiteFooter() {
     <footer className="border-t border-line bg-surface">
       <Container className="grid gap-12 py-16 md:py-20 lg:grid-cols-[1.3fr_1fr_1fr_1fr]">
         <div>
-          <span className="font-display text-lg font-bold tracking-tight text-ink">
-            HE<span className="text-accent">PA</span>
-          </span>
-          <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted">
+          <Link href="/" aria-label="Hepa Yapı — Anasayfa" className="inline-block">
+            <BrandLogo variant="full" sizes="300px" className="h-[74px]" />
+          </Link>
+          <p className="mt-5 max-w-xs text-sm leading-relaxed text-muted">
             Kahramanmaraş, Hatay ve Adıyaman bölgesinde deprem risk analizi, statik proje ve
             bina güçlendirme çalışmalarını mühendislik hassasiyetiyle yürütüyoruz.
           </p>
