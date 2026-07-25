@@ -15,7 +15,7 @@ const NAV_ITEMS = [
   { href: "/iletisim", label: "İletişim" },
 ];
 
-export function DesktopNav() {
+export function DesktopNav({ dark = false }: { dark?: boolean }) {
   const pathname = usePathname();
   return (
     <nav className="hidden items-center gap-1 md:flex">
@@ -25,8 +25,14 @@ export function DesktopNav() {
           <Link
             key={item.href}
             href={item.href}
-            className={`group relative px-3 py-2 font-mono text-[12px] uppercase tracking-[0.14em] transition-colors ${
-              active ? "text-ink" : "text-muted hover:text-ink"
+            className={`group relative px-3 py-2 font-mono text-[12px] uppercase tracking-[0.14em] transition-colors duration-300 ${
+              dark
+                ? active
+                  ? "text-white"
+                  : "text-white/55 hover:text-white"
+                : active
+                  ? "text-ink"
+                  : "text-muted hover:text-ink"
             }`}
           >
             {item.label}
@@ -42,7 +48,7 @@ export function DesktopNav() {
   );
 }
 
-export function MobileNav() {
+export function MobileNav({ dark = false }: { dark?: boolean }) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const [lastPathname, setLastPathname] = useState(pathname);
@@ -69,7 +75,9 @@ export function MobileNav() {
         onClick={() => setOpen((v) => !v)}
         aria-label={open ? "Menüyü kapat" : "Menüyü aç"}
         aria-expanded={open}
-        className="flex h-10 w-10 items-center justify-center rounded-sm border border-line text-ink"
+        className={`flex h-10 w-10 items-center justify-center rounded-sm border transition-colors duration-300 ${
+          dark ? "border-white/25 text-white" : "border-line text-ink"
+        }`}
       >
         {open ? <IconClose className="h-5 w-5" /> : <IconMenu className="h-5 w-5" />}
       </button>

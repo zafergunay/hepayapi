@@ -44,13 +44,13 @@ function Rebar() {
   );
 
   useFrame(() => {
-    const reveal = scroll.range(0.14, 0.26);
+    const boost = scroll.range(0.14, 0.26);
+    const opacity = 0.42 + boost * 0.5;
     if (groupRef.current) {
-      groupRef.current.visible = reveal > 0.01;
       groupRef.current.traverse((child) => {
         const mesh = child as THREE.Mesh;
         const mat = mesh.material as THREE.Material & { opacity?: number };
-        if (mat && "opacity" in mat) mat.opacity = reveal * 0.85;
+        if (mat && "opacity" in mat) mat.opacity = opacity;
       });
     }
   });
@@ -59,12 +59,12 @@ function Rebar() {
     <group ref={groupRef}>
       {CORNER_OFFSETS.map(([x, z], i) => (
         <mesh key={i} position={[x, 0, z]}>
-          <cylinderGeometry args={[0.026, 0.026, COLUMN_H - 0.3, 8]} />
-          <meshBasicMaterial color="#5B96F5" transparent opacity={0} />
+          <cylinderGeometry args={[0.036, 0.036, COLUMN_H - 0.3, 8]} />
+          <meshBasicMaterial color="#5B96F5" transparent opacity={0.42} />
         </mesh>
       ))}
       {tieLoops.map((points, i) => (
-        <Line key={i} points={points} color="#5B96F5" lineWidth={1} transparent opacity={0} />
+        <Line key={i} points={points} color="#5B96F5" lineWidth={1.4} transparent opacity={0.42} />
       ))}
     </group>
   );
@@ -176,7 +176,7 @@ function ColumnRig() {
       <group ref={groupRef}>
         <mesh>
           <boxGeometry args={[COLUMN_W, COLUMN_H, COLUMN_D]} />
-          <meshBasicMaterial color="#5B96F5" transparent opacity={0.035} />
+          <meshBasicMaterial color="#4A5C7A" transparent opacity={0.16} />
           <Edges color="#EAF1FD" />
         </mesh>
         <Rebar />
