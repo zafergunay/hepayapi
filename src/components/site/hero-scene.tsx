@@ -1,6 +1,5 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { Canvas } from "@react-three/fiber";
@@ -10,6 +9,7 @@ import { SectionLabel } from "./section-label";
 import { ColumnSectionDiagram, GridBackdrop } from "./diagrams";
 import { IconArrow, IconPin } from "./icons";
 import { REGION_LABELS, REGION_ORDER } from "./regions";
+import { use3DSceneEnabled } from "./use-3d-scene-enabled";
 
 const ColumnRig = dynamic(() => import("./hero-rig"), { ssr: false });
 
@@ -193,36 +193,6 @@ function HeroCanvasExperience({ heroTitle, heroSubtitle }: { heroTitle: string; 
         </ScrollControls>
       </Canvas>
     </div>
-  );
-}
-
-function subscribeScenePreference(callback: () => void) {
-  const mqDesktop = window.matchMedia("(min-width: 1024px)");
-  const mqMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  mqDesktop.addEventListener("change", callback);
-  mqMotion.addEventListener("change", callback);
-  return () => {
-    mqDesktop.removeEventListener("change", callback);
-    mqMotion.removeEventListener("change", callback);
-  };
-}
-
-function getScenePreferenceSnapshot() {
-  return (
-    window.matchMedia("(min-width: 1024px)").matches &&
-    !window.matchMedia("(prefers-reduced-motion: reduce)").matches
-  );
-}
-
-function getScenePreferenceServerSnapshot() {
-  return false;
-}
-
-function use3DSceneEnabled() {
-  return useSyncExternalStore(
-    subscribeScenePreference,
-    getScenePreferenceSnapshot,
-    getScenePreferenceServerSnapshot,
   );
 }
 

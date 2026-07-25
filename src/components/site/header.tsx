@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Container } from "./container";
 import { DesktopNav, MobileNav } from "./mobile-nav";
+import { use3DSceneEnabled } from "./use-3d-scene-enabled";
 
 function subscribeScrolled(callback: () => void) {
   window.addEventListener("scroll", callback, { passive: true });
@@ -26,7 +27,8 @@ function useScrolled() {
 export function SiteHeader() {
   const pathname = usePathname();
   const scrolled = useScrolled();
-  const onHero = pathname === "/" && !scrolled;
+  const dark3DHeroActive = use3DSceneEnabled();
+  const onHero = pathname === "/" && !scrolled && dark3DHeroActive;
 
   return (
     <header
