@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+:root {
+  --background: #F4F6F8;
+  --foreground: #101826;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  /* Hepa design system — "engineering precision, made calm" (blueprint blue) */
+  --color-canvas: #F4F6F8;
+  --color-surface: #FFFFFF;
+  --color-ink: #101826;
+  --color-muted: #57616F;
+  --color-line: #DCE2E8;
+  --color-line-strong: #C3CBD4;
+
+  --color-graphite: #0A1424;
+  --color-graphite-2: #101E36;
+
+  --color-accent: #1D5FD6;
+  --color-accent-ink: #1750B4;
+  --color-accent-press: #123E86;
+  --color-accent-wash: #EAF1FD;
+  --color-accent-bright: #5B96F5;
+
+  --color-sand: #E9E3D6;
+
+  --font-display: var(--font-archivo), system-ui, sans-serif;
+  --font-body: var(--font-plex-sans), system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+
+  --shadow-1: 0 1px 2px rgba(16,24,38,.04), 0 2px 8px rgba(16,24,38,.05);
+  --shadow-2: 0 12px 32px -12px rgba(16,24,38,.18), 0 2px 8px rgba(16,24,38,.06);
+}
+
+body {
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+h1, h2, h3 {
+  text-wrap: balance;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

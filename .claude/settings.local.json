@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(where npx *)",
+      "Bash(where claude *)",
+      "WebSearch",
+      "mcp__playwright__browser_take_screenshot",
+      "Bash(node \"C:/Users/Zafer/AppData/Local/Temp/claude/c--Users-Zafer-OneDrive-Masa-st--Python-ahmethepa/fdad2a55-7849-4453-86ec-0c77fa5eb9fb/scratchpad/gen-placeholders.mjs\")",
+      "mcp__playwright__browser_snapshot",
+      "Bash(gh auth *)",
+      "Bash(gh --version)",
+      "Bash(git status *)",
+      "Bash(git add *)"
+    ]
+  }
+}
