@@ -8,7 +8,8 @@ import { ProjectCard } from "@/components/site/project-card";
 import { CtaBand } from "@/components/site/cta-band";
 import { DimensionRule } from "@/components/site/diagrams";
 import { IconArrow } from "@/components/site/icons";
-import { HeroScene } from "@/components/site/hero-scene";
+import { HeroFilm } from "@/components/site/hero-film";
+import { Anatomy3D } from "@/components/site/anatomy-3d";
 import { PhotoBand } from "@/components/site/photo-band";
 import { REGION_LABELS, REGION_ORDER } from "@/components/site/regions";
 
@@ -57,7 +58,7 @@ export default async function HomePage() {
   return (
     <>
       {/* HERO */}
-      <HeroScene heroTitle={heroTitle} heroSubtitle={heroSubtitle} />
+      <HeroFilm heroTitle={heroTitle} heroSubtitle={heroSubtitle} />
 
       {/* SERVICES */}
       <section className="py-16 md:py-24 lg:py-28">
@@ -105,13 +106,14 @@ export default async function HomePage() {
         </Container>
       </section>
 
-      <PhotoBand />
+      {/* GÜÇLENDİRME ANATOMİSİ — interactive 3D */}
+      <Anatomy3D />
 
       {/* WHY US */}
-      <section className="border-y border-line bg-surface py-16 md:py-24 lg:py-28">
+      <section className="border-b border-line bg-surface py-16 md:py-24 lg:py-28">
         <Container>
           <Reveal>
-            <SectionLabel index="§03">Neden Hepa</SectionLabel>
+            <SectionLabel index="§04">Neden Hepa</SectionLabel>
           </Reveal>
           <div className="mt-10 grid gap-x-10 gap-y-10 lg:grid-cols-2">
             {WHY_POINTS.map((point, i) => (
@@ -133,7 +135,7 @@ export default async function HomePage() {
       <section className="py-16 md:py-24 lg:py-28">
         <Container>
           <Reveal>
-            <SectionLabel index="§04">Hizmet Bölgesi</SectionLabel>
+            <SectionLabel index="§05">Hizmet Bölgesi</SectionLabel>
           </Reveal>
           <Reveal delay={0.06}>
             <h2 className="mt-4 max-w-xl font-display text-2xl font-semibold text-ink sm:text-3xl">
@@ -159,13 +161,15 @@ export default async function HomePage() {
         </Container>
       </section>
 
+      <PhotoBand />
+
       {/* FEATURED PROJECTS */}
-      <section className="border-t border-line bg-surface py-16 md:py-24 lg:py-28">
+      <section className="bg-surface py-16 md:py-24 lg:py-28">
         <Container>
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
               <Reveal>
-                <SectionLabel index="§05">Öne Çıkan Projeler</SectionLabel>
+                <SectionLabel index="§06">Öne Çıkan Projeler</SectionLabel>
               </Reveal>
               <Reveal delay={0.06}>
                 <h2 className="mt-4 max-w-xl font-display text-2xl font-semibold text-ink sm:text-3xl">

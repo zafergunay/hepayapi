@@ -3,6 +3,10 @@
 :root {
   --background: #F4F6F8;
   --foreground: #101826;
+
+  /* 65px bar + the 1px rule under it. The sticky header stays in flow, so any
+     section that wants to sit *behind* it has to account for this height. */
+  --header-h: 66px;
 }
 
 @theme inline {
@@ -56,6 +60,95 @@ body {
 
 h1, h2, h3 {
   text-wrap: balance;
+}
+
+/* ---------------------------------------------------------------------------
+   Scroll-driven sections.
+
+   Height is decided in CSS, not JS, so the server HTML and the first paint
+   already agree with what the browser will end up doing. The scrub scripts
+   read the rendered geometry instead of re-testing a media query, which keeps
+   markup identical across devices — no hydration branch, no first-paint flash.
+
+   `--scrub` is the single source of truth for "this viewport gets the
+   scroll-scrubbed treatment": tall sections, pinned stages, progress rail.
+   Below lg, or when the visitor asked for less motion, every scrub section
+   collapses to one plain viewport-height panel.
+--------------------------------------------------------------------------- */
+.scrub-stage {
+  height: 100svh;
+}
+
+/* Pinned panels that are *not* the hero sit below the header once it has gone
+   opaque, so they are short by its height rather than hidden behind it. (The
+   hero needs no such inset: on the home page the header is taken out of flow
+   so the film can start at y=0 — see SiteHeader.) */
+.scrub-panel-inset {
+  top: var(--header-h);
+  height: calc(100svh - var(--header-h));
+}
+
+/* Scrub-only chrome. These win over Tailwind display utilities on purpose —
+   unlayered rules outrank `@layer utilities` — so the elements they hide stay
+   hidden in the collapsed layout without a JS branch. Pick the variant that
+   matches the display mode the element needs when it is shown. */
+.scrub-only,
+.scrub-only-flex {
+  display: none;
+}
+
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  .scrub-hero {
+    height: 380vh;
+  }
+
+  .scrub-anatomy {
+    height: 320vh;
+  }
+
+  .scrub-only {
+    display: block;
+  }
+
+  .scrub-only-flex {
+    display: flex;
+  }
+}
+
+@keyframes hepa-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes hepa-scroll-cue {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(320%);
+  }
+}
+
+/* Entrance for above-the-fold hero copy. CSS rather than Framer Motion so it
+   plays on first paint instead of waiting for hydration, and so the JS scrub
+   loop stays free to own the opacity of the stage wrapper above it. */
+.hepa-rise {
+  animation: hepa-rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Fine blueprint mesh laid over dark media — keeps the engineering-drawing
+   language present even on top of photography. */
+.blueprint-mesh {
+  background-image:
+    linear-gradient(to right, rgba(234, 241, 253, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(234, 241, 253, 0.06) 1px, transparent 1px);
+  background-size: 64px 64px;
 }
 
 @media (prefers-reduced-motion: reduce) {

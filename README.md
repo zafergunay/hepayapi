@@ -20,6 +20,29 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Hero film assets
+
+`public/videos/` holds three derivatives of one source clip. The source `.mp4`
+is git-ignored — keep it at the repo root and re-run these to regenerate:
+
+```bash
+ffmpeg -i SOURCE.mp4 -an -c:v libx264 -preset slow -crf 28 -g 4 -keyint_min 4 -sc_threshold 0 -pix_fmt yuv420p -movflags +faststart public/videos/hero-scrub.mp4
+```
+
+```bash
+ffmpeg -i SOURCE.mp4 -an -vf scale=854:480 -c:v libx264 -preset slow -crf 30 -pix_fmt yuv420p -movflags +faststart public/videos/hero-loop.mp4
+```
+
+```bash
+ffmpeg -i SOURCE.mp4 -vf "select='eq(n\,0)'" -vframes 1 -q:v 4 public/videos/hero-poster.jpg
+```
+
+`hero-scrub.mp4` carries a keyframe every 4 frames so the desktop scroll-scrub
+can seek anywhere without stalling — that density is why it is encoded
+separately from `hero-loop.mp4`, which phones just play end to end. The poster
+is what paints before either file arrives, and it is what keeps the transparent
+header legible on first load.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

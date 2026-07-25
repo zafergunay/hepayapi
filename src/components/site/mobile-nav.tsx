@@ -15,6 +15,14 @@ const NAV_ITEMS = [
   { href: "/iletisim", label: "İletişim" },
 ];
 
+// Exactly one text-colour utility per link: emitting both the light and dark
+// class and hoping the last one in the attribute wins does not work — Tailwind
+// resolves conflicts by stylesheet order, not by attribute order.
+function navToneClass(dark: boolean, active: boolean) {
+  if (dark) return active ? "text-white" : "text-white/65 hover:text-white";
+  return active ? "text-ink" : "text-muted hover:text-ink";
+}
+
 export function DesktopNav({ dark = false }: { dark?: boolean }) {
   const pathname = usePathname();
   return (
@@ -25,15 +33,10 @@ export function DesktopNav({ dark = false }: { dark?: boolean }) {
           <Link
             key={item.href}
             href={item.href}
-            className={`group relative px-3 py-2 font-body text-[13px] font-medium uppercase tracking-[0.06em] transition-colors duration-300 ${
-              active ? "text-ink" : "text-muted hover:text-ink"
-            } ${
-              dark
-                ? active
-                  ? "lg:motion-safe:text-white"
-                  : "lg:motion-safe:text-white/60 lg:motion-safe:hover:text-white"
-                : ""
-            }`}
+            className={`group relative px-3 py-2 font-body text-[13px] font-medium uppercase tracking-[0.06em] transition-colors duration-300 ${navToneClass(
+              dark,
+              Boolean(active),
+            )}`}
           >
             {item.label}
             <span
@@ -48,7 +51,7 @@ export function DesktopNav({ dark = false }: { dark?: boolean }) {
   );
 }
 
-export function MobileNav() {
+export function MobileNav({ dark = false }: { dark?: boolean }) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const [lastPathname, setLastPathname] = useState(pathname);
@@ -75,7 +78,9 @@ export function MobileNav() {
         onClick={() => setOpen((v) => !v)}
         aria-label={open ? "Menüyü kapat" : "Menüyü aç"}
         aria-expanded={open}
-        className="flex h-10 w-10 items-center justify-center rounded-sm border border-line text-ink"
+        className={`flex h-10 w-10 items-center justify-center rounded-sm border transition-colors duration-300 ${
+          dark && !open ? "border-white/25 text-white" : "border-line text-ink"
+        }`}
       >
         {open ? <IconClose className="h-5 w-5" /> : <IconMenu className="h-5 w-5" />}
       </button>

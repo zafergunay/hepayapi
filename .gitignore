@@ -50,3 +50,7 @@ next-env.d.ts
 
 # local test artifacts
 .playwright-mcp/
+
+# Source footage kept at the repo root for re-encoding. The web-ready derivatives
+# live in public/videos/ — see README for the ffmpeg commands that produce them.
+/*.mp4
