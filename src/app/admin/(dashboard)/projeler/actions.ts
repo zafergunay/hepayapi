@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
-import { Region } from "@/generated/prisma";
+import { Region } from "@/generated/prisma/client";
 import { SESSION_COOKIE, verifySessionToken } from "@/lib/auth";
 
 async function requireSession() {
