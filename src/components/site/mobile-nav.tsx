@@ -25,14 +25,14 @@ export function DesktopNav({ dark = false }: { dark?: boolean }) {
           <Link
             key={item.href}
             href={item.href}
-            className={`group relative px-3 py-2 font-mono text-[12px] uppercase tracking-[0.14em] transition-colors duration-300 ${
+            className={`group relative px-3 py-2 font-body text-[13px] font-medium uppercase tracking-[0.06em] transition-colors duration-300 ${
+              active ? "text-ink" : "text-muted hover:text-ink"
+            } ${
               dark
                 ? active
-                  ? "text-white"
-                  : "text-white/55 hover:text-white"
-                : active
-                  ? "text-ink"
-                  : "text-muted hover:text-ink"
+                  ? "lg:motion-safe:text-white"
+                  : "lg:motion-safe:text-white/60 lg:motion-safe:hover:text-white"
+                : ""
             }`}
           >
             {item.label}
@@ -48,7 +48,7 @@ export function DesktopNav({ dark = false }: { dark?: boolean }) {
   );
 }
 
-export function MobileNav({ dark = false }: { dark?: boolean }) {
+export function MobileNav() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const [lastPathname, setLastPathname] = useState(pathname);
@@ -75,9 +75,7 @@ export function MobileNav({ dark = false }: { dark?: boolean }) {
         onClick={() => setOpen((v) => !v)}
         aria-label={open ? "Menüyü kapat" : "Menüyü aç"}
         aria-expanded={open}
-        className={`flex h-10 w-10 items-center justify-center rounded-sm border transition-colors duration-300 ${
-          dark ? "border-white/25 text-white" : "border-line text-ink"
-        }`}
+        className="flex h-10 w-10 items-center justify-center rounded-sm border border-line text-ink"
       >
         {open ? <IconClose className="h-5 w-5" /> : <IconMenu className="h-5 w-5" />}
       </button>
