@@ -9,6 +9,7 @@ import { CtaBand } from "@/components/site/cta-band";
 import { DimensionRule } from "@/components/site/diagrams";
 import { IconArrow } from "@/components/site/icons";
 import { HeroScene } from "@/components/site/hero-scene";
+import { PhotoBand } from "@/components/site/photo-band";
 import { REGION_LABELS, REGION_ORDER } from "@/components/site/regions";
 
 const WHY_POINTS = [
@@ -103,6 +104,8 @@ export default async function HomePage() {
           </Reveal>
         </Container>
       </section>
+
+      <PhotoBand />
 
       {/* WHY US */}
       <section className="border-y border-line bg-surface py-16 md:py-24 lg:py-28">
