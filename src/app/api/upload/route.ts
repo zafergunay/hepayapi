@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { put } from "@vercel/blob";
 import { writeFile } from "fs/promises";
 import path from "path";
 import { randomUUID } from "crypto";
@@ -25,6 +26,17 @@ export async function POST(request: NextRequest) {
   const extension = file.type.split("/")[1];
   const filename = `${randomUUID()}.${extension}`;
   const buffer = Buffer.from(await file.arrayBuffer());
+
+  // On Vercel the filesystem is read-only and per-invocation, so uploads go to
+  // Blob storage. Without a token (local dev) we keep writing to public/uploads.
+  if (process.env.BLOB_READ_WRITE_TOKEN) {
+    const blob = await put(`uploads/${filename}`, buffer, {
+      access: "public",
+      contentType: file.type,
+      addRandomSuffix: false,
+    });
+    return NextResponse.json({ url: blob.url });
+  }
 
   await writeFile(path.join(process.cwd(), "public", "uploads", filename), buffer);
 

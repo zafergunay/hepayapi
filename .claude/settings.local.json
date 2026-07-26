@@ -65,7 +65,11 @@
       "Bash(rm -f admin-dash.jpeg admin-mobile.jpeg admin-login.jpeg logo-header.jpeg logo-footer.jpeg)",
       "Bash(mkdir -p scripts)",
       "Bash(cp \"C:/Users/Zafer/AppData/Local/Temp/claude/C--Users-Zafer-OneDrive-Masa-st--Python-ahmethepa/cca7c4b4-d3b5-4ca9-80fb-647f9a7134d1/scratchpad/make_logo.py\" scripts/build-brand-assets.py)",
-      "Bash(python scripts/build-brand-assets.py)"
+      "Bash(python scripts/build-brand-assets.py)",
+      "Bash(nslookup www.hepayapi.com.tr 8.8.8.8)",
+      "Bash(grep -v \"^Server\\\\|^Address:\\\\s*8.8.8.8\\\\|^$\")",
+      "Bash(curl -s -o /dev/null -w \"hepayapi.com.tr -> %{http_code}\\\\n\" --max-time 20 \"http://hepayapi.com.tr/\")",
+      "Bash(curl -s --max-time 20 \"http://hepayapi.com.tr/\")"
     ]
   }
 }
